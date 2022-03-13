@@ -1,4 +1,4 @@
-# Build a small Pixel CNN++ model to train on MNIST.
+# Build a small Pixel CNN++ model to train on maze dataset.
 
 import tensorflow as tf
 import tensorflow_datasets as tfds
@@ -8,11 +8,6 @@ from image_utils import read_images, sample_to_image
 tfd = tfp.distributions
 tfk = tf.keras
 tfkl = tf.keras.layers
-
-# Load MNIST from tensorflow_datasets
-# data = tfds.load('mnist')
-# train_data, test_data = data['train'], data['test']
-# print(train_data)
 
 train_data = read_images("\\imgs\\train\\")
 test_data = read_images("\\imgs\\test\\")

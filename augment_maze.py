@@ -32,7 +32,7 @@ def save_output_image(i: int, output: list, dir: str):
 
 def main():
 
-    n_samples = 500
+    n_samples = 1000
     n = 1
     p = 0.5
     size = 9
