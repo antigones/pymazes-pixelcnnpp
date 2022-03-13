@@ -9,19 +9,21 @@ tfd = tfp.distributions
 tfk = tf.keras
 tfkl = tf.keras.layers
 
-train_data = read_images("\\imgs\\train\\")
-test_data = read_images("\\imgs\\test\\")
+# train_data = read_images("\\imgs\\train\\")
+# test_data = read_images("\\imgs\\test\\")
+batch_size = 32
+train_data = tf.keras.utils.image_dataset_from_directory(".\imgs\\",image_size=(28, 28), shuffle=True, batch_size=batch_size)
 
 
 def image_preprocess(x):
   x['image'] = tf.cast(x['image'], tf.float32)
   return (x['image'],)  # (input, output) of the model
 
-batch_size = 16
-#train_it = train_data.map(image_preprocess).batch(batch_size).shuffle(1000)
+
+# train_it = train_data.map(image_preprocess).batch(batch_size).shuffle(1000)
 train_it = train_data
 
-image_shape = (28, 28, 1)
+image_shape = (28, 28, 3)
 # Define a Pixel CNN network
 dist = tfd.PixelCNN(
     image_shape=image_shape,
@@ -47,7 +49,7 @@ model.compile(
     optimizer=tfk.optimizers.Adam(.001),
     metrics=[])
 
-model.fit(train_it, epochs=50, verbose=True)
+model.fit(train_it, epochs=10, verbose=True)
 
 # sample five images from the trained model
 samples = dist.sample(5)

@@ -5,7 +5,7 @@ import numpy as np
 
 
 def save_output_image(i: int, output: list, dir: str):
-    img_mode = 'L'
+    img_mode = 'RGB'
     s = ""
     img_out = []
     for elm in output:
@@ -40,17 +40,11 @@ def main():
     train_dir = "imgs\\train\\"
     test_dir = "imgs\\test\\"
 
-    for i in range((n_samples//3)*2):
+    for i in range(n_samples):
         grid = np.random.binomial(n, p, size=(size, size))
         grid = maze_utils.preprocess_grid(grid, size)
         output = maze_utils.carve_maze(grid, size)
         save_output_image(i, output, train_dir)
-
-    for i in range(n_samples//3):
-        grid = np.random.binomial(n, p, size=(size, size))
-        grid = maze_utils.preprocess_grid(grid, size)
-        output = maze_utils.carve_maze(grid, size)
-        save_output_image(i, output, test_dir)
 
 
 if __name__ == '__main__':
